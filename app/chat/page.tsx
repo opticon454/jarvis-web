@@ -49,7 +49,7 @@ export default function ChatPage() {
   // Load nodes (filtered to current household)
   useEffect(() => {
     if (!accessToken || !householdId) return;
-    fetchNodes().then((n) => {
+    fetchNodes(accessToken).then((n) => {
       const filtered = n.filter((node) => node.household_id === householdId);
       setNodes(filtered);
       if (filtered.length > 0 && !selectedNode) setSelectedNode(filtered[0]);

@@ -247,8 +247,10 @@ export interface NodeInfo {
   household_id: string | null;
 }
 
-export async function fetchNodes(): Promise<NodeInfo[]> {
-  const res = await fetch("/api/cc/admin/nodes");
+export async function fetchNodes(accessToken: string): Promise<NodeInfo[]> {
+  const res = await fetch("/api/cc/admin/nodes", {
+    headers: { Authorization: `Bearer ${accessToken}` },
+  });
   if (!res.ok) return [];
   return res.json();
 }
