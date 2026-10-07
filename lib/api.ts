@@ -543,6 +543,17 @@ export async function updateHouseholdName(householdId: string, name: string): Pr
 
 // ─── Pantry API ──────────────────────────────────────────────────────────
 
+/** One part of a package. The Pantry returns objects; older responses were plain names. */
+export interface PantryComponent {
+  type: string;
+  name: string;
+  path?: string;
+}
+
+export function componentName(component: string | PantryComponent): string {
+  return typeof component === "string" ? component : component.name;
+}
+
 export interface PantryCommand {
   command_name: string;
   display_name: string;
@@ -555,7 +566,7 @@ export interface PantryCommand {
   verified: boolean;
   icon_url: string | null;
   package_type: "command" | "bundle";
-  components: string[];
+  components: (string | PantryComponent)[];
 }
 
 export interface PantryBrowseResponse {

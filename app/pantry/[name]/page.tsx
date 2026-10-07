@@ -4,7 +4,7 @@ import { useEffect, useState } from "react";
 import { useParams, useRouter } from "next/navigation";
 import { useAuth } from "@/hooks/useAuth";
 import { Sidebar } from "@/components/layout/Sidebar";
-import { getPackageDetail, PantryCommandDetail } from "@/lib/api";
+import { componentName, getPackageDetail, PantryCommandDetail } from "@/lib/api";
 import { cn } from "@/lib/utils";
 import {
   AlertTriangle,
@@ -147,8 +147,8 @@ export default function PantryDetailPage() {
                   </h3>
                   <div className="space-y-1.5">
                     {pkg.components.map((comp) => (
-                      <div key={comp} className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300">
-                        {comp}
+                      <div key={componentName(comp)} className="rounded-lg border border-zinc-800 bg-zinc-900 px-3 py-2 text-sm text-zinc-300">
+                        {componentName(comp)}
                       </div>
                     ))}
                   </div>
